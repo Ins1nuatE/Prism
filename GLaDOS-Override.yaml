@@ -178,6 +178,14 @@ rule-providers:
     behavior: classical
     format: yaml
 
+  ChinaDomain:
+    type: http
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml"
+    path: ./rule-providers/ChinaDomain.yaml
+    interval: 86400
+    behavior: classical
+    format: yaml
+
   AI:
     type: http
     url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/AI.yaml"
@@ -314,6 +322,14 @@ rule-providers:
     behavior: classical
     format: yaml
 
+  ProxyGFWlist:
+    type: http
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml"
+    path: ./rule-providers/ProxyGFWlist.yaml
+    interval: 86400
+    behavior: classical
+    format: yaml
+
 rules:
   - RULE-SET,Lan,DIRECT
   - RULE-SET,Direct,DIRECT
@@ -321,6 +337,8 @@ rules:
   - RULE-SET,AdvertisingLite,AdBlock
   - RULE-SET,BanEasyListChina,AdBlock
   - RULE-SET,BanEasyPrivacy,AdBlock
+
+  - RULE-SET,ChinaDomain,DIRECT
 
   - RULE-SET,AI,AI + Research
   - RULE-SET,Scholar,AI + Research
@@ -345,6 +363,8 @@ rules:
   - RULE-SET,PornAsia,Streaming
 
   - RULE-SET,Download,DIRECT
+
+  - RULE-SET,ProxyGFWlist,Default Proxy
 
   - GEOIP,CN,DIRECT
   - GEOSITE,STEAM@CN,DIRECT

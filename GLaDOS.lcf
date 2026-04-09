@@ -1,0 +1,124 @@
+[General]
+interface-mode = auto
+ip-mode = dual
+disconnect-on-policy-change = false
+sni-sniffing = true
+
+dns-server = system,223.5.5.5,119.29.29.29
+doh-server = https://dns.alidns.com/dns-query,https://doh.pub/dns-query
+doh3-server = h3://dns.alidns.com/dns-query
+real-ip = *.apple.com,*.icloud.com
+
+skip-proxy = localhost,*.local,captive.apple.com,e.crashlytics.com,169.254.0.0/16,fe80::/10
+
+bypass-tun = 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,127.0.0.0/8,169.254.0.0/16,100.64.0.0/10,192.0.0.0/24,192.0.2.0/24,198.18.0.0/15,198.51.100.0/24,203.0.113.0/24,192.88.99.0/24,224.0.0.0/4,255.255.255.255/32,fc00::/7,fe80::/10
+
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+
+proxy-test-url = http://cp.cloudflare.com/generate_204
+internet-test-url = http://connectivitycheck.platform.hicloud.com/generate_204
+test-timeout = 5
+
+disable-stun = true
+disable-udp-ports = 443
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+[Proxy]
+
+[Remote Proxy]
+
+[Proxy Chain]
+
+[Proxy Group]
+Default Proxy = select,Auto,Express,Premium,Download,US Fixed IP,TW Fixed IP,US,TW,Default_Proxy_Filter,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,US Fixed IP,TW Fixed IP,AI_Research_Filter,url = http://cp.cloudflare.com/generate_204
+Developer = select,US Fixed IP,TW Fixed IP,Developer_Filter,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,Express,Download,Steam_Filter,url = http://cp.cloudflare.com/generate_204
+Streaming = select,Express,Streaming_Filter,url = http://cp.cloudflare.com/generate_204
+Apple = select,DIRECT,Apple_Filter,url = http://cp.cloudflare.com/generate_204
+Microsoft = select,DIRECT,Microsoft_Filter,url = http://cp.cloudflare.com/generate_204
+AdBlock = select,REJECT,DIRECT
+Premium = select,Express,US Fixed IP,TW Fixed IP,Premium_Filter,url = http://cp.cloudflare.com/generate_204
+Download = select,DIRECT,Download_Filter,url = http://cp.cloudflare.com/generate_204
+Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
+
+Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100
+Express = url-test,Express_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+US Fixed IP = fallback,US_Fixed_IP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 120
+TW Fixed IP = fallback,TW_Fixed_IP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 120
+US = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+TW = url-test,TW_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
+
+[Remote Filter]
+Default_Proxy_Filter = NameRegex, FilterKey = "(?i)^(US-Dedicated-F[12]|US-X1|TW-X1|US-D[12])-[0-9]+$"
+AI_Research_Filter = NameRegex, FilterKey = "(?i)^(US-Dedicated-F[12]|TW-IPv6-P1)-[0-9]+$"
+Developer_Filter = NameRegex, FilterKey = "(?i)^(US-Dedicated-F[12]|Fast-B1|TW-IPv6-P1)-[0-9]+$"
+Steam_Filter = NameRegex, FilterKey = "(?i)^(US-D[12]|US-X1)-[0-9]+$"
+Streaming_Filter = NameRegex, FilterKey = "(?i)^(US-Balancer-N1|US-Netflix-N2|Balancer-B1|TW-IPv6-P1)-[0-9]+$"
+Apple_Filter = NameRegex, FilterKey = "(?i)^(US-Balancer-N1|US-Netflix-N2)-[0-9]+$"
+Microsoft_Filter = NameRegex, FilterKey = "(?i)^(US-Balancer-N1|US-Netflix-N2)-[0-9]+$"
+Premium_Filter = NameRegex, FilterKey = "(?i)^(US-Dedicated-F[12]|TW-IPv6-P1)-[0-9]+$"
+Download_Filter = NameRegex, FilterKey = "(?i)^US-D[12]-[0-9]+$"
+Auto_Filter = NameRegex, FilterKey = "(?i)^(Fast-B1|Balancer-B1|TLS-S1|US-Balancer-N1|US-Netflix-N2)-[0-9]+$"
+Express_Filter = NameRegex, FilterKey = "(?i)^(Balancer-B1|US-X1|US-D[12])-[0-9]+$"
+US_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^US-Dedicated-F[12]-[0-9]+$"
+TW_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^TW-IPv6-P1-[0-9]+$"
+US_Filter = NameRegex, FilterKey = "(?i)^US-X1-[0-9]+$"
+TW_Filter = NameRegex, FilterKey = "(?i)^TW-X1-[0-9]+$"
+
+[Rule]
+GEOIP,CN,DIRECT
+FINAL,Final
+
+[Remote Rule]
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Lan/Lan.list, policy=DIRECT, tag=Lan, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Direct/Direct.list, policy=DIRECT, tag=Direct, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/AdvertisingLite/AdvertisingLite.list, policy=AdBlock, tag=AdvertisingLite, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/AdvertisingLite/AdvertisingLite_Domain.list, policy=AdBlock, tag=AdvertisingLite_Domain, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list, policy=AdBlock, tag=BanEasyListChina, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list, policy=AdBlock, tag=BanEasyPrivacy, enabled=true
+
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list, policy=DIRECT, tag=ChinaDomain, enabled=true
+
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list, policy=AI + Research, tag=AI, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Scholar/Scholar.list, policy=AI + Research, tag=Scholar, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Google/Google.list, policy=AI + Research, tag=Google, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Apple/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Microsoft/Microsoft.list, policy=Microsoft, tag=Microsoft, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Xbox/Xbox.list, policy=Microsoft, tag=Xbox, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Developer/Developer.list, policy=Developer, tag=Developer, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GitHub/GitHub.list, policy=Developer, tag=GitHub, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/SteamCN/SteamCN.list, policy=DIRECT, tag=SteamCN, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Steam/Steam.list, policy=Steam, tag=Steam, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=Default Proxy, tag=Telegram, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=Default Proxy, tag=X, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=Streaming, tag=GlobalMedia, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Netflix/Netflix.list, policy=Streaming, tag=Netflix, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Porn.list, policy=Streaming, tag=Porn, enabled=true
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Download/Download.list, policy=DIRECT, tag=Download, enabled=true
+
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list, policy=Default Proxy, tag=ProxyGFWlist, enabled=true
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Loon.plugin, enabled=false
+
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Loon/AdvertisingLite/AdvertisingLite.plugin, enabled=true
+
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.plugin, enabled=true
+
+[Mitm]
+skip-server-cert-verify = false
+hostname = *.google.com,*.googlevideo.com,*.youtube.com
