@@ -33,14 +33,14 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 
 [Proxy Group]
 Default Proxy = select,Auto,Express,HK,TW,JP,SG,US,Download,url = http://cp.cloudflare.com/generate_204
-AI + Research = select,US,JP,SG,TW,HK,url = http://cp.cloudflare.com/generate_204
-Developer = select,US,JP,SG,HK,TW,url = http://cp.cloudflare.com/generate_204
-Steam = select,DIRECT,Download,US,JP,SG,url = http://cp.cloudflare.com/generate_204
-Streaming = select,Express,US,JP,SG,TW,HK,url = http://cp.cloudflare.com/generate_204
-Apple = select,DIRECT,HK,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
-Microsoft = select,DIRECT,US,JP,SG,HK,TW,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Developer = select,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,Download,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Streaming = select,Express,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Apple = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
+Microsoft = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
-Download = select,DIRECT,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Download = select,DIRECT,HK,TW,JP,SG,US,url = http://cp.cloudflare.com/generate_204
 Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
 
 Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100

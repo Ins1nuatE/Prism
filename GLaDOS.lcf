@@ -32,15 +32,15 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Proxy Chain]
 
 [Proxy Group]
-Default Proxy = select,Auto,Express,Premium,Download,US Fixed IP,TW Fixed IP,US,TW,Default_Proxy_Filter,url = http://cp.cloudflare.com/generate_204
-AI + Research = select,US Fixed IP,TW Fixed IP,AI_Research_Filter,url = http://cp.cloudflare.com/generate_204
-Developer = select,US Fixed IP,TW Fixed IP,Developer_Filter,url = http://cp.cloudflare.com/generate_204
+Default Proxy = select,Auto,Express,Premium,Download,TW Fixed IP,US Fixed IP,TW,US,Default_Proxy_Filter,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,TW Fixed IP,US Fixed IP,AI_Research_Filter,url = http://cp.cloudflare.com/generate_204
+Developer = select,TW Fixed IP,US Fixed IP,Developer_Filter,url = http://cp.cloudflare.com/generate_204
 Steam = select,DIRECT,Express,Download,Steam_Filter,url = http://cp.cloudflare.com/generate_204
 Streaming = select,Express,Streaming_Filter,url = http://cp.cloudflare.com/generate_204
 Apple = select,DIRECT,Apple_Filter,url = http://cp.cloudflare.com/generate_204
 Microsoft = select,DIRECT,Microsoft_Filter,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
-Premium = select,Express,US Fixed IP,TW Fixed IP,Premium_Filter,url = http://cp.cloudflare.com/generate_204
+Premium = select,Express,TW Fixed IP,US Fixed IP,Premium_Filter,url = http://cp.cloudflare.com/generate_204
 Download = select,DIRECT,Download_Filter,url = http://cp.cloudflare.com/generate_204
 Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
 

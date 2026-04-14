@@ -6,26 +6,26 @@ proxy-groups:
       - "Express"
       - "Premium"
       - "Download"
-      - "US Fixed IP"
       - "TW Fixed IP"
-      - "US"
+      - "US Fixed IP"
       - "TW"
+      - "US"
     include-all-proxies: true
     filter: "^(?:US-Dedicated-F[12]|US-X1|TW-X1|US-D[12])-\\d+$"
 
   - name: "AI + Research"
     type: "select"
     proxies:
-      - "US Fixed IP"
       - "TW Fixed IP"
+      - "US Fixed IP"
     include-all-proxies: true
     filter: "^(?:US-Dedicated-F[12]|TW-IPv6-P1)-\\d+$"
 
   - name: "Developer"
     type: "select"
     proxies:
-      - "US Fixed IP"
       - "TW Fixed IP"
+      - "US Fixed IP"
     include-all-proxies: true
     filter: "^(?:US-Dedicated-F[12]|Fast-B1|TW-IPv6-P1)-\\d+$"
 
@@ -69,8 +69,8 @@ proxy-groups:
     type: "select"
     proxies:
       - "Express"
-      - "US Fixed IP"
       - "TW Fixed IP"
+      - "US Fixed IP"
     include-all-proxies: true
     filter: "^(?:US-Dedicated-F[12]|TW-IPv6-P1)-\\d+$"
 
