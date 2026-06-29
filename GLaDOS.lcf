@@ -32,15 +32,17 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 [Proxy Chain]
 
 [Proxy Group]
-Default Proxy = select,Auto,Fast,Balanced,TLS,TW,JP,US,SG,TW Fixed IP,JP Fixed IP,US Fixed IP,DIRECT,url = http://cp.cloudflare.com/generate_204
-AI + Research = select,TW Fixed IP,JP Fixed IP,US Fixed IP,TW,JP,US,SG,url = http://cp.cloudflare.com/generate_204
-Developer = select,Fast,Balanced,TLS,TW,JP,US,SG,TW Fixed IP,JP Fixed IP,US Fixed IP,url = http://cp.cloudflare.com/generate_204
-Steam = select,DIRECT,Fast,Balanced,TW,JP,US,SG,url = http://cp.cloudflare.com/generate_204
-Streaming = select,Balanced,TW,JP,US,US Streaming,SG,url = http://cp.cloudflare.com/generate_204
-Apple = select,DIRECT,TW,JP,US,SG,url = http://cp.cloudflare.com/generate_204
-Microsoft = select,DIRECT,TW,JP,US,SG,url = http://cp.cloudflare.com/generate_204
+Default Proxy = select,Auto,Fast,Balanced,TLS,TW Fixed IP,US Fixed IP,JP Fixed IP,TW,US,JP,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
+AI + Research = select,TW Fixed IP,US Fixed IP,JP Fixed IP,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Developer = select,Fast,Balanced,TLS,TW Fixed IP,US Fixed IP,JP Fixed IP,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Steam = select,DIRECT,Fast,Balanced,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Games = select,Fast,Balanced,TW,US,JP,SG,DIRECT,url = http://cp.cloudflare.com/generate_204
+Apple = select,DIRECT,Balanced,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Microsoft = select,DIRECT,Balanced,TW,US,JP,SG,url = http://cp.cloudflare.com/generate_204
+Streaming = select,Balanced,TW,US,JP,SG,Streaming_Filter,url = http://cp.cloudflare.com/generate_204
+Porn = select,Balanced,TW,US,JP,SG,Streaming_Filter,url = http://cp.cloudflare.com/generate_204
+Download = select,DIRECT,Fast,Balanced,TW,US,JP,SG,Download_Filter,url = http://cp.cloudflare.com/generate_204
 AdBlock = select,REJECT,DIRECT
-Download = select,DIRECT,Fast,Balanced,TW,JP,US,US Download,SG,url = http://cp.cloudflare.com/generate_204
 Final = select,Default Proxy,DIRECT,url = http://cp.cloudflare.com/generate_204
 
 Auto = url-test,Auto_Filter,url = http://cp.cloudflare.com/generate_204,interval = 180,tolerance = 100
@@ -53,22 +55,20 @@ JP = fallback,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 1
 JP Fixed IP = fallback,JP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 120
 US = url-test,US_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
 US Fixed IP = fallback,US_Fixed_IP_Filter,url = http://cp.cloudflare.com/generate_204,interval = 120
-US Download = url-test,Download_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
-US Streaming = url-test,Streaming_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300,tolerance = 100
 SG = url-test,SG_Filter,url = http://cp.cloudflare.com/generate_204,interval = 300
 
 [Remote Filter]
-Auto_Filter = NameRegex, FilterKey = "(?i)^(Fast-B1|Balancer-B1|TLS-S1|US-Balancer-N1|US-Netflix-N2)-[0-9]+$"
+Auto_Filter = NameRegex, FilterKey = "(?i)^(Fast-B1|Balancer-B1|TLS-[ST]1|US-(Balancer|Netflix)-N[0-9]+)-[0-9]+$"
 Fast_Filter = NameRegex, FilterKey = "(?i)^Fast-B1-[0-9]+$"
 Balanced_Filter = NameRegex, FilterKey = "(?i)^Balancer-B1-[0-9]+$"
-TLS_Filter = NameRegex, FilterKey = "(?i)^TLS-S1-[0-9]+$"
+TLS_Filter = NameRegex, FilterKey = "(?i)^TLS-[ST]1-[0-9]+$"
 TW_Filter = NameRegex, FilterKey = "(?i)^TW-X1-[0-9]+$"
 TW_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^TW-IPv6-P1-[0-9]+$"
 JP_Filter = NameRegex, FilterKey = "(?i)^JP-Dedicated-B1-[0-9]+$"
 US_Filter = NameRegex, FilterKey = "(?i)^US-X1-[0-9]+$"
-US_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^(US-Dedicated-B1|US-Dedicated-F[12])-[0-9]+$"
-Download_Filter = NameRegex, FilterKey = "(?i)^US-D[12]-[0-9]+$"
-Streaming_Filter = NameRegex, FilterKey = "(?i)^(US-Netflix-N2|US-Balancer-N1)-[0-9]+$"
+US_Fixed_IP_Filter = NameRegex, FilterKey = "(?i)^US-Dedicated-B1-[0-9]+$"
+Download_Filter = NameRegex, FilterKey = "(?i)^US-D[0-9]+-[0-9]+$"
+Streaming_Filter = NameRegex, FilterKey = "(?i)^US-(Netflix|Balancer)-N[0-9]+-[0-9]+$"
 SG_Filter = NameRegex, FilterKey = "(?i)^SG-X5-[0-9]+$"
 
 [Rule]
@@ -99,12 +99,14 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/SteamCN/SteamCN.list, policy=DIRECT, tag=SteamCN, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Steam/Steam.list, policy=Steam, tag=Steam, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Game/Game.list, policy=Games, tag=Games, enabled=true
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Telegram/Telegram.list, policy=Default Proxy, tag=Telegram, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Twitter/Twitter.list, policy=Default Proxy, tag=X, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Discord/Discord.list, policy=Default Proxy, tag=Discord, enabled=true
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Netflix/Netflix.list, policy=Streaming, tag=Netflix, enabled=false
-https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Porn.list, policy=Streaming, tag=Porn, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Porn.list, policy=Porn, tag=Porn, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GlobalMedia/GlobalMedia.list, policy=Streaming, tag=GlobalMedia, enabled=true
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Download/Download.list, policy=Download, tag=Download, enabled=false
