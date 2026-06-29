@@ -6,24 +6,24 @@ proxy-groups:
       - "Fast"
       - "Balanced"
       - "TLS"
-      - "TW"
-      - "JP"
-      - "US"
-      - "SG"
       - "TW Fixed IP"
-      - "JP Fixed IP"
       - "US Fixed IP"
+      - "JP Fixed IP"
+      - "TW"
+      - "US"
+      - "JP"
+      - "SG"
       - "DIRECT"
 
   - name: "AI + Research"
     type: "select"
     proxies:
       - "TW Fixed IP"
-      - "JP Fixed IP"
       - "US Fixed IP"
+      - "JP Fixed IP"
       - "TW"
-      - "JP"
       - "US"
+      - "JP"
       - "SG"
 
   - name: "Developer"
@@ -32,13 +32,13 @@ proxy-groups:
       - "Fast"
       - "Balanced"
       - "TLS"
-      - "TW"
-      - "JP"
-      - "US"
-      - "SG"
       - "TW Fixed IP"
-      - "JP Fixed IP"
       - "US Fixed IP"
+      - "JP Fixed IP"
+      - "TW"
+      - "US"
+      - "JP"
+      - "SG"
 
   - name: "Steam"
     type: "select"
@@ -47,8 +47,39 @@ proxy-groups:
       - "Fast"
       - "Balanced"
       - "TW"
-      - "JP"
       - "US"
+      - "JP"
+      - "SG"
+
+  - name: "Games"
+    type: "select"
+    proxies:
+      - "Fast"
+      - "Balanced"
+      - "TW"
+      - "US"
+      - "JP"
+      - "SG"
+      - "DIRECT"
+
+  - name: "Apple"
+    type: "select"
+    proxies:
+      - "DIRECT"
+      - "Balanced"
+      - "TW"
+      - "US"
+      - "JP"
+      - "SG"
+
+  - name: "Microsoft"
+    type: "select"
+    proxies:
+      - "DIRECT"
+      - "Balanced"
+      - "TW"
+      - "US"
+      - "JP"
       - "SG"
 
   - name: "Streaming"
@@ -56,34 +87,22 @@ proxy-groups:
     proxies:
       - "Balanced"
       - "TW"
-      - "JP"
       - "US"
-      - "US Streaming"
+      - "JP"
       - "SG"
+    include-all-proxies: true
+    filter: "^US-(?:Netflix|Balancer)-N\\d+-\\d+$"
 
-  - name: "Apple"
+  - name: "Porn"
     type: "select"
     proxies:
-      - "DIRECT"
+      - "Balanced"
       - "TW"
-      - "JP"
       - "US"
-      - "SG"
-
-  - name: "Microsoft"
-    type: "select"
-    proxies:
-      - "DIRECT"
-      - "TW"
       - "JP"
-      - "US"
       - "SG"
-
-  - name: "AdBlock"
-    type: "select"
-    proxies:
-      - "REJECT"
-      - "DIRECT"
+    include-all-proxies: true
+    filter: "^US-(?:Netflix|Balancer)-N\\d+-\\d+$"
 
   - name: "Download"
     type: "select"
@@ -92,10 +111,17 @@ proxy-groups:
       - "Fast"
       - "Balanced"
       - "TW"
-      - "JP"
       - "US"
-      - "US Download"
+      - "JP"
       - "SG"
+    include-all-proxies: true
+    filter: "^US-D\\d+-\\d+$"
+
+  - name: "AdBlock"
+    type: "select"
+    proxies:
+      - "REJECT"
+      - "DIRECT"
 
   - name: "Final"
     type: "select"
@@ -110,7 +136,7 @@ proxy-groups:
     interval: 180
     tolerance: 100
     include-all-proxies: true
-    filter: "^(?:Fast-B1|Balancer-B1|TLS-S1|US-Balancer-N1|US-Netflix-N2)-\\d+$"
+    filter: "^(?:Fast-B1|Balancer-B1|TLS-[ST]1|US-(?:Balancer|Netflix)-N\\d+)-\\d+$"
 
   - name: "Fast"
     type: "url-test"
@@ -137,7 +163,7 @@ proxy-groups:
     interval: 300
     tolerance: 100
     include-all-proxies: true
-    filter: "^TLS-S1-\\d+$"
+    filter: "^TLS-[ST]1-\\d+$"
 
   - name: "TW"
     type: "url-test"
@@ -185,24 +211,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 120
     include-all-proxies: true
-    filter: "^(?:US-Dedicated-B1|US-Dedicated-F[12])-\\d+$"
-
-  - name: "US Download"
-    type: "url-test"
-    hidden: true
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    include-all-proxies: true
-    filter: "^US-D[12]-\\d+$"
-
-  - name: "US Streaming"
-    type: "url-test"
-    hidden: true
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 100
-    include-all-proxies: true
-    filter: "^(?:US-Netflix-N2|US-Balancer-N1)-\\d+$"
+    filter: "^US-Dedicated-B1-\\d+$"
 
   - name: "SG"
     type: "url-test"
@@ -357,6 +366,14 @@ rule-providers:
     behavior: classical
     format: yaml
 
+  Discord:
+    type: http
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Discord/Discord.yaml"
+    path: ./rule-providers/Discord.yaml
+    interval: 86400
+    behavior: classical
+    format: yaml
+
   Netflix:
     type: http
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix_Classical.yaml"
@@ -420,7 +437,7 @@ rules:
   - GEOSITE,CATEGORY-GAMES@CN,DIRECT
   - RULE-SET,Steam,Steam
   - GEOSITE,STEAM,Steam
-  - GEOSITE,CATEGORY-GAMES,Steam
+  - GEOSITE,CATEGORY-GAMES,Games
 
   - RULE-SET,Google,AI + Research
   - RULE-SET,AI,AI + Research
@@ -435,10 +452,12 @@ rules:
 
   - RULE-SET,Telegram,Default Proxy
   - RULE-SET,X,Default Proxy
+  - RULE-SET,Discord,Default Proxy
+
+  - RULE-SET,Porn,Porn
+  - RULE-SET,PornAsia,Porn
 
   - RULE-SET,Netflix,Streaming
-  - RULE-SET,Porn,Streaming
-  - RULE-SET,PornAsia,Streaming
   - RULE-SET,GlobalMedia,Streaming
 
   - RULE-SET,Download,Download
